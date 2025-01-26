@@ -1,11 +1,9 @@
-// src/pages/ResultsPage.jsx
-
 import React from 'react';
-import { useLocation } from 'react-router-dom'; // to get the time from navigation
+import { useLocation } from 'react-router-dom';
 
 const ResultsPage = () => {
   const location = useLocation();
-  const { time } = location.state || { time: 0 }; // Default time if not passed
+  const { time, registrationNumber } = location.state || { time: 0, registrationNumber: 'Unknown' };
 
   // Convert time to minutes and seconds
   const formatTime = (seconds) => {
@@ -17,9 +15,12 @@ const ResultsPage = () => {
   return (
     <div className="results-page">
       <h1>Congratulations!</h1>
+      <h2>Player Registration: {registrationNumber}</h2> {/* Display the registration number */}
       <h2>You finished the game in {formatTime(time)}!</h2>
-      <p>We have sent your completion time to the event organisers and they will be getting back in touch with you soon.
-      Good luck!</p>
+      <p>
+        We have sent your completion time to the event organizers, and they will be in touch with you soon.
+        Good luck!
+      </p>
     </div>
   );
 };
